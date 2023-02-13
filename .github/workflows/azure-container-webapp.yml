@@ -162,7 +162,7 @@ jobs:
 
 
   deploy:
-    if: false
+    if: true
     permissions:
       contents: none
     runs-on: ubuntu-latest
