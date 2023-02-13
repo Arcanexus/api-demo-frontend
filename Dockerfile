@@ -16,5 +16,5 @@ COPY --from=compile-image /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 COPY . /app
 WORKDIR /app
-EXPOSE 80
+EXPOSE 5000
 ENTRYPOINT ["python", "app.py"]
