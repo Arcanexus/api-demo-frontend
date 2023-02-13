@@ -18,6 +18,6 @@ To run the webapp :
 ### Docker
 To run the webapp, launch the following command:
 ```
- docker run -d  -name api-demo-frontend ghcr.io/arcanexus/api-demo-frontend:latest
+ docker run -d -p80:80 -name api-demo-frontend ghcr.io/arcanexus/api-demo-frontend:latest
  ```
 
