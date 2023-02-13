@@ -82,7 +82,7 @@ jobs:
   #         file: ./Dockerfile
 
   build:
-    if: BUILD == true
+    if: ${{ env.BUILD }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -162,7 +162,7 @@ jobs:
 
 
   deploy:
-    if: DEPLOY == true
+    if: ${{ env.DEPLOY }}
     permissions:
       contents: none
     runs-on: ubuntu-latest
