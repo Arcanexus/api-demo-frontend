@@ -34,6 +34,7 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
+  DATE: $(date +'%Y-%m-%d-%H%M%S')
 
 
 on:
