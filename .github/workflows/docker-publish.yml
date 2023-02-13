@@ -20,11 +20,12 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
+  BUILD: false
 
 
 jobs:
   build:
-
+    if: env.BUILD == true
     runs-on: ubuntu-latest
     permissions:
       contents: read
