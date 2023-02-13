@@ -1,5 +1,7 @@
 # lambda-api-demo
 
+[![Docker](https://github.com/Arcanexus/api-demo-frontend/actions/workflows/docker-publish.yml/badge.svg?branch=main)](https://github.com/Arcanexus/api-demo-frontend/actions/workflows/docker-publish.yml)
+
 ## Summary
 A simple set of Python scripts simulating a CRUD based API.
 
