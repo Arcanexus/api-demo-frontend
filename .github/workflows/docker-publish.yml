@@ -80,7 +80,7 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }},ghcr.io/${{ env.REPO }}:${{ steps.date.outputs.date }},ghcr.io/${{ env.REPO }}:latest
+          tags: ${{ steps.meta.outputs.tags }},ghcr.io/${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.date.outputs.date }},ghcr.io/${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
