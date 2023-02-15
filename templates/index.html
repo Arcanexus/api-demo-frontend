@@ -24,10 +24,8 @@
     <form method="post" action="/">
       <div class="row g-3">
         <div class="col-auto">
-          <!-- <div class="input-group-text">HTTP Method</div> -->
-          <!-- <label for="HTTPMethod" class="form-label">HTTP Method</label> -->
-          <select class="form-select" aria-label="Default select example" id="HTTPMethod", name="HTTPMethod">
-            <!-- <option selected>Select...</option> -->
+          <select class="form-select" aria-label="HTTP Method" id="HTTPMethod", name="HTTPMethod" required>
+            <option value="{{HTTPMethod}}" selected>{{HTTPMethod}}</option>
             <option value="GET">GET</option>
             <option value="POST">POST</option>
             <option value="PUT">PUT</option>
@@ -37,21 +35,94 @@
         </div>
         <div class="col input-group mb-3 g-3">
           <div class="input-group-text">Target URL</div>
-          <!-- <label for="targetURL" class="form-label">URL of the target API to request</label> -->
-          <input type="text" class="form-control" id="targetURL" name="targetURL" aria-describedby="urlHelp">
-          <!-- <div id="urlHelp" class="form-text">URL of the target API to request.</div> -->
+          <input type="text" class="form-control" id="targetURL" name="targetURL" aria-describedby="urlHelp" required value="{{targetURL}}">
         </div>
       </div>
     
       <p></p>
       <div class="input-group">
         <span class="input-group-text">Payload</span>
-        <textarea class="form-control" id="payload" name="payload" aria-label="Payload" style="height: 400px" placeholder="{&#10;  'toto': 'tata'&#10;}"></textarea>
+        <textarea class="form-control" id="payload" name="payload" aria-label="Payload" style="height: 400px" placeholder="{&#10;  &quot;toto&quot;: &quot;tata&quot;&#10;}">{{payload}}</textarea>
       </div>
 
       <button type="submit" class="btn btn-primary">Submit</button>
       <button type="reset" class="btn btn-danger">Reset</button>
     </form>
+
+
+    <!-- if response -->
+    {% if request.method == 'POST' %}
+      <br \><p class="fs-1"><u>Request:</u></p>
+      <table class="table table-borderless table-responsive w-auto">
+        <thead>
+          <tr>
+            <th scope="col">HTTP Method</th>
+            <th scope="col">Target URL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {% if HTTPMethod == 'GET' %}
+                <span class="badge rounded-pill text-bg-success">{{HTTPMethod}}</span>
+              {% elif HTTPMethod == 'POST' %}
+                <span class="badge rounded-pill text-bg-primary">{{HTTPMethod}}</span>
+              {% elif HTTPMethod == 'PUT' %}
+                <span class="badge rounded-pill text-bg-info">{{HTTPMethod}}</span>
+              {% elif HTTPMethod == 'PATCH' %}
+                <span class="badge rounded-pill text-bg-warning">{{HTTPMethod}}</span>
+              {% elif HTTPMethod == 'DELETE' %}
+                <span class="badge rounded-pill text-bg-danger">{{HTTPMethod}}</span>
+              {% endif %}
+            </td>
+            <td><a href="{{targetURL}}">{{targetURL}}</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-borderless table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">Payload</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{payload}}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <hr \>
+      <br \><p class="fs-1"><u>Result:</u></p>
+      <table class="table table-borderless table-responsive w-auto">
+        <thead>
+          <tr>
+            <th scope="col">Status Code</th>
+            <th scope="col">Reason</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{result.status_code}}</td>
+            <td>{{result.reason}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-borderless table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">Content:</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="table-light">{{result.text}}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    {% endif %}
+
     <p class="text-center">© <b>Arca</b>nexus</p>
   </body>
 </html>
