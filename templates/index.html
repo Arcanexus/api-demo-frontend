@@ -52,75 +52,98 @@
 
     <!-- if response -->
     {% if request.method == 'POST' %}
-      <br \><p class="fs-1"><u>Request:</u></p>
-      <table class="table table-borderless table-responsive w-auto">
+      <br \>
+
+      <table class="table table-borderless table-responsive" style='table-layout:fixed;'>
         <thead>
           <tr>
-            <th scope="col">HTTP Method</th>
-            <th scope="col">Target URL</th>
+            <th><p class="fs-2">Request:</p></th>
+            <th><p class="fs-2">Result:</p></th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              {% if HTTPMethod == 'GET' %}
-                <span class="badge rounded-pill text-bg-success">{{HTTPMethod}}</span>
-              {% elif HTTPMethod == 'POST' %}
-                <span class="badge rounded-pill text-bg-primary">{{HTTPMethod}}</span>
-              {% elif HTTPMethod == 'PUT' %}
-                <span class="badge rounded-pill text-bg-info">{{HTTPMethod}}</span>
-              {% elif HTTPMethod == 'PATCH' %}
-                <span class="badge rounded-pill text-bg-warning">{{HTTPMethod}}</span>
-              {% elif HTTPMethod == 'DELETE' %}
-                <span class="badge rounded-pill text-bg-danger">{{HTTPMethod}}</span>
-              {% endif %}
+              <table class="table table-borderless table-responsive w-auto">
+                <thead>
+                  <tr>
+                    <th scope="col">HTTP Method</th>
+                    <th scope="col">Target URL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      {% if HTTPMethod == 'GET' %}
+                        <span class="badge rounded-pill text-bg-success">{{HTTPMethod}}</span>
+                      {% elif HTTPMethod == 'POST' %}
+                        <span class="badge rounded-pill text-bg-primary">{{HTTPMethod}}</span>
+                      {% elif HTTPMethod == 'PUT' %}
+                        <span class="badge rounded-pill text-bg-info">{{HTTPMethod}}</span>
+                      {% elif HTTPMethod == 'PATCH' %}
+                        <span class="badge rounded-pill text-bg-warning">{{HTTPMethod}}</span>
+                      {% elif HTTPMethod == 'DELETE' %}
+                        <span class="badge rounded-pill text-bg-danger">{{HTTPMethod}}</span>
+                      {% endif %}
+                    </td>
+                    <td><a href="{{targetURL}}">{{targetURL}}</a></td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table table-borderless table-responsive">
+                <thead>
+                  <tr>
+                    <th scope="col">Payload</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="table-light">{{payload}}</td>
+                  </tr>
+                </tbody>
+              </table>
             </td>
-            <td><a href="{{targetURL}}">{{targetURL}}</a></td>
+            <td>
+              <table class="table table-borderless table-responsive w-auto">
+                <thead>
+                  <tr>
+                    <th scope="col">Status Code</th>
+                    <th scope="col">Reason</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      {% if result.status_code in [200,201,202,204] %}
+                      <span class="badge rounded-pill text-bg-success">{{result.status_code}}</span>
+                      {% elif result.status_code in [500] %}
+                      <span class="badge rounded-pill text-bg-danger">{{result.status_code}}</span>
+                      {% elif result.status_code in [400,401,403,404] %}
+                      <span class="badge rounded-pill text-bg-warning">{{result.status_code}}</span>
+                      {% endif %}
+                    </td>
+                    <td>{{result.reason}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table table-borderless table-responsive">
+                <thead>
+                  <tr>
+                    <th scope="col">Content:</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="table-light">{{result.text}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
           </tr>
         </tbody>
       </table>
-      <table class="table table-borderless table-responsive">
-        <thead>
-          <tr>
-            <th scope="col">Payload</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{payload}}</td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <hr \>
-      <br \><p class="fs-1"><u>Result:</u></p>
-      <table class="table table-borderless table-responsive w-auto">
-        <thead>
-          <tr>
-            <th scope="col">Status Code</th>
-            <th scope="col">Reason</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{result.status_code}}</td>
-            <td>{{result.reason}}</td>
-          </tr>
-        </tbody>
-      </table>
-      <table class="table table-borderless table-responsive">
-        <thead>
-          <tr>
-            <th scope="col">Content:</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="table-light">{{result.text}}</td>
-          </tr>
-        </tbody>
-      </table>
-      
+
+
     {% endif %}
 
     <p class="text-center">© <b>Arca</b>nexus</p>
