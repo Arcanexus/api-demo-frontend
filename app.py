@@ -10,6 +10,10 @@ def index():
   targetURL = ''
   payload = ''
   result = ''
+  try:
+    webappname = os.environ['WEBSITE_SITE_NAME']
+  except:
+    webappname = ''
 
   if request.method == 'POST':
     HTTPMethod = request.form.get('HTTPMethod')
@@ -33,7 +37,7 @@ def index():
       case _:
         return "ERROR, HTTP Method not in (GET, POST, PUT, PATCH, DELETE)", 400
 
-  return render_template('index.html', HTTPMethod=HTTPMethod, targetURL=targetURL, payload=payload, result=result)
+  return render_template('index.html', HTTPMethod=HTTPMethod, targetURL=targetURL, payload=payload, result=result, webappname=webappname)
 
 @app.route('/favicon.ico')
 def favicon():
