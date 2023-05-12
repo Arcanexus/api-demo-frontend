@@ -3,7 +3,7 @@
 [![Build](https://github.com/Arcanexus/api-demo-frontend/actions/workflows/azure-container-webapp.yml/badge.svg)](https://github.com/Arcanexus/api-demo-frontend/actions/workflows/azure-container-webapp.yml)
 
 ## Summary
-A simple set of Python scripts simulating a CRUD based API.
+A simple set of Python scripts simulating a fake CRUD based API.
 
 ## Frontend webapp
 The frontend is a Flask webapp.
